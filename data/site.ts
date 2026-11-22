@@ -1,4 +1,4 @@
-// Site-wide personal info. Replace the placeholder values (marked TODO) with real data.
+// Site-wide personal info, kept in sync with the CV at https://cv.tram1992.com.
 
 import type { TechSlug } from "@/data/tech-icons";
 
@@ -22,48 +22,66 @@ export interface SiteConfig {
   email: string;
   description: string;
   url: string;
+  /** Full online CV. */
+  cvUrl: string;
+  /** Personal side project, Trạm 1992. */
+  tramUrl: string;
   hireMeUrl: string;
   /** Shown in the "Things I work with" section on the home page. */
   skills: TechSlug[];
   socials: SocialLink[];
 }
 
+/** First professional role (DXC Vietnam, 04/2014). */
+const CAREER_START_YEAR = 2014;
+
 export const siteConfig: SiteConfig = {
   name: "Simon",
   initials: "S",
-  role: "Frontend Developer",
-  // TODO: set your real years of experience
-  yearsOfExperience: 5,
-  location: "Vietnam",
+  avatar: "/avatar.webp",
+  role: "Senior Software Engineer",
+  yearsOfExperience: new Date().getFullYear() - CAREER_START_YEAR,
+  location: "Ho Chi Minh City, Vietnam",
   openToWork: true,
   email: "nnguyen92.tdtit@gmail.com",
   description:
-    "Frontend developer based in Vietnam, building fast and accessible web apps with React, Next.js and TypeScript.",
-  // TODO: set NEXT_PUBLIC_SITE_URL (e.g. in .env.production) to the production domain
+    "Senior software engineer in Ho Chi Minh City, Vietnam. Frontend specialist (React, Next.js, TypeScript) with solid backend experience (Java, Spring Boot), building scalable web apps with global teams.",
+  // TODO: set NEXT_PUBLIC_SITE_URL (e.g. in .env.production) to this blog's production domain
   url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com").replace(/\/$/, ""),
-  // TODO: replace with your Upwork or Fiverr profile
-  hireMeUrl: "https://www.upwork.com/freelancers/~your-profile",
+  cvUrl: "https://cv.tram1992.com",
+  tramUrl: "https://www.tram1992.com",
+  hireMeUrl: "https://linkedin.com/in/nguyen-nam-150989130",
   skills: [
-    "typescript",
-    "javascript",
-    "react",
+    // Frontend
     "nextjs",
+    "react",
+    "vite",
+    "astro",
+    "angular",
     "tailwind",
-    "shadcn",
-    "framer",
     "redux",
-    "nodejs",
-    "nestjs",
+    "mobx",
+    "javascript",
+    "typescript",
+    "htmlCss",
+    "styledComponents",
+    // Backend
     "java",
     "spring",
+    "nestjs",
     "postgresql",
-    "prisma",
+    "mssql",
+    "oracle",
+    "gradle",
+    // Tools
+    "git",
+    "jenkins",
+    "cicd",
+    "figma",
+    "docker",
   ],
   socials: [
-    // TODO: replace the placeholder profile URLs
-    { platform: "github", label: "GitHub", href: "https://github.com/your-username" },
-    { platform: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/in/your-username" },
-    { platform: "upwork", label: "Upwork", href: "https://www.upwork.com/freelancers/~your-profile" },
-    { platform: "fiverr", label: "Fiverr", href: "https://www.fiverr.com/your-username" },
+    { platform: "github", label: "GitHub", href: "https://github.com/jingnatsu" },
+    { platform: "linkedin", label: "LinkedIn", href: "https://linkedin.com/in/nguyen-nam-150989130" },
   ],
 };

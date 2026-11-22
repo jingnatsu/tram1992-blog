@@ -35,7 +35,6 @@ function Portrait() {
           className="aspect-square w-full object-cover"
         />
       ) : (
-        // TODO: set siteConfig.avatar to a real photo (e.g. /public/me.webp).
         <div
           aria-hidden="true"
           className="flex aspect-square w-full items-center justify-center bg-highlight/40 font-display text-8xl"
@@ -59,17 +58,14 @@ function OpenToWorkBadge() {
         <span className="absolute inline-flex size-full animate-ping rounded-full bg-green-600 opacity-75 motion-reduce:animate-none" />
         <span className="relative inline-flex size-2 rounded-full bg-green-600" />
       </span>
-      Open to new gigs
+      Open to freelance projects
       <span className="sr-only">(opens in a new tab)</span>
     </a>
   );
 }
 
-// TODO: rewrite the copy and replace the placeholder company/project links.
 export function Intro() {
-  const { name, yearsOfExperience, location, socials } = siteConfig;
-  const upwork = socials.find((s) => s.platform === "upwork")?.href ?? siteConfig.hireMeUrl;
-  const fiverr = socials.find((s) => s.platform === "fiverr")?.href ?? siteConfig.hireMeUrl;
+  const { name, yearsOfExperience, location, cvUrl, tramUrl } = siteConfig;
 
   return (
     <section aria-labelledby="intro-heading" className="flex flex-col items-center gap-10 md:flex-row md:items-start">
@@ -83,16 +79,22 @@ export function Intro() {
           </span>
         </h1>
         <p>
-          <u className="decoration-wavy decoration-brand/60 underline-offset-6">A frontend developer</u> with{" "}
-          {yearsOfExperience}+ years of experience, based in <mark className="alt">{location}</mark>. I build
-          fast, accessible web apps with React, Next.js and TypeScript, and I care a lot about the small
-          details that make an interface <mark>feel right</mark>.
+          <u className="decoration-wavy decoration-brand/60 underline-offset-6">A senior software engineer</u> with{" "}
+          {yearsOfExperience}+ years of experience, based in <mark className="alt">{location}</mark>. My strength is
+          the frontend (React, Next.js, TypeScript), backed by solid backend knowledge (Java, Spring Boot), which
+          helps me build <mark>optimised, scalable</mark> applications end to end.
         </p>
         <p>
-          Previously at <InlineLink href="https://example.com">Company A</InlineLink> and{" "}
-          <InlineLink href="https://example.com">Company B</InlineLink>. These days I freelance on{" "}
-          <InlineLink href={upwork}>Upwork</InlineLink> and <InlineLink href={fiverr}>Fiverr</InlineLink>, and
-          occasionally write about what I learn on <InlineLink href="/blogs">my blog</InlineLink>.
+          By day I&apos;m at{" "}
+          <InlineLink href="https://www.mgm-tp.com">mgm technology partners Vietnam</InlineLink>, working with German
+          clients. Before that I spent years at Code88, Dai-ichi Life and DXC, collaborating with teams in Malaysia,
+          India and Singapore.
+        </p>
+        <p>
+          These days I&apos;m also building <InlineLink href={tramUrl}>Trạm 1992</InlineLink>, my personal corner of
+          the web, and taking on <mark className="alt">freelance projects</mark>. Full details are in{" "}
+          <InlineLink href={cvUrl}>my CV</InlineLink>, and I occasionally write about what I learn on{" "}
+          <InlineLink href="/blogs">my blog</InlineLink>.
         </p>
       </div>
     </section>

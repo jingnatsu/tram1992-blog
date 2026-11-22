@@ -15,7 +15,7 @@ export function formatPeriod({ quarter, year }: TimelineItemData["period"]) {
 }
 
 export function TimelineItem({ item }: { item: TimelineItemData }) {
-  const { period, title, status, description, techStack, links, images } = item;
+  const { period, title, status, description, highlights, techStack, links, images } = item;
   const headingId = `project-${item.id}`;
 
   return (
@@ -42,6 +42,14 @@ export function TimelineItem({ item }: { item: TimelineItemData }) {
             </h4>
             <p>{description}</p>
           </header>
+
+          {highlights && highlights.length > 0 && (
+            <ul className="list-disc space-y-1 pl-6 marker:text-brand">
+              {highlights.map((highlight) => (
+                <li key={highlight}>{highlight}</li>
+              ))}
+            </ul>
+          )}
 
           <TechMarquee items={techStack} />
 
