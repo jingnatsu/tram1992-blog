@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 
 const GitHubIcon = socialIcons.github;
 
-export function formatPeriod({ quarter, year }: TimelineItemData["period"]) {
+function formatPeriod({ quarter, year }: TimelineItemData["period"]) {
   return `Q${quarter} ${year}`;
 }
 

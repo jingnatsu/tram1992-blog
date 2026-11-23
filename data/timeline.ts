@@ -2,7 +2,7 @@ import type { TechSlug } from "@/data/tech-icons";
 
 export type ProjectStatus = "done" | "ongoing" | "paused";
 
-export interface TimelinePeriod {
+interface TimelinePeriod {
   quarter: 1 | 2 | 3 | 4;
   year: number;
 }
@@ -15,7 +15,7 @@ export interface TimelineImage {
   height: number;
 }
 
-export interface TimelineLinks {
+interface TimelineLinks {
   github?: string;
   demo?: string;
 }

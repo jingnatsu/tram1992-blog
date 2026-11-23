@@ -2,6 +2,8 @@ import { SectionHeading } from "@/components/home/section-heading";
 import { socialIcons } from "@/components/icons/social-icons";
 import { siteConfig } from "@/data/site";
 
+const socialIconMap = new Map(Object.entries(socialIcons));
+
 export function Socials() {
   return (
     <section aria-labelledby="socials-heading" className="flex flex-col gap-4">
@@ -10,7 +12,8 @@ export function Socials() {
       </SectionHeading>
       <ul className="flex flex-wrap gap-x-6 gap-y-2">
         {siteConfig.socials.map(({ platform, label, href }) => {
-          const Icon = socialIcons[platform];
+          const Icon = socialIconMap.get(platform);
+          if (!Icon) return null;
           return (
             <li key={platform}>
               <a

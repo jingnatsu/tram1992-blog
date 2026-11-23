@@ -3,6 +3,8 @@ import type { CSSProperties } from "react";
 import { techIcons, type TechSlug } from "@/data/tech-icons";
 import { cn } from "@/lib/utils";
 
+const techIconMap = new Map(Object.entries(techIcons));
+
 interface TechMarqueeProps {
   items: TechSlug[];
   className?: string;
@@ -18,7 +20,9 @@ function TechList({ items, duplicate = false }: { items: TechSlug[]; duplicate?:
       )}
     >
       {items.map((slug) => {
-        const { name, Icon } = techIcons[slug];
+        const tech = techIconMap.get(slug);
+        if (!tech) return null;
+        const { name, Icon } = tech;
         return (
           <li key={slug} className="sketch flex items-center gap-1.5 px-2.5 text-base whitespace-nowrap">
             <Icon className="size-4" />

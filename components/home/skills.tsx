@@ -2,6 +2,8 @@ import { SectionHeading } from "@/components/home/section-heading";
 import { siteConfig } from "@/data/site";
 import { techIcons } from "@/data/tech-icons";
 
+const techIconMap = new Map(Object.entries(techIcons));
+
 export function Skills() {
   return (
     <section aria-labelledby="skills-heading" className="flex flex-col gap-4">
@@ -10,7 +12,9 @@ export function Skills() {
       </SectionHeading>
       <ul className="flex flex-wrap gap-3">
         {siteConfig.skills.map((slug) => {
-          const { name, Icon } = techIcons[slug];
+          const tech = techIconMap.get(slug);
+          if (!tech) return null;
+          const { name, Icon } = tech;
           return (
             <li key={slug} className="sketch sketch-hover flex items-center gap-2 px-3 py-1">
               <Icon className="size-5" />

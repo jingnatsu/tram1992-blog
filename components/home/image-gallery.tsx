@@ -24,7 +24,7 @@ export function ImageGallery({ images }: ImageGalleryProps) {
   if (images.length === 0) return null;
 
   const isOpen = activeIndex !== null;
-  const active = isOpen ? images[activeIndex] : null;
+  const active = isOpen ? images.at(activeIndex) ?? null : null;
   const hasMany = images.length > 1;
 
   const go = (step: number) =>

@@ -4,7 +4,7 @@ import type { TechSlug } from "@/data/tech-icons";
 
 export type SocialPlatform = "github" | "linkedin" | "upwork" | "fiverr";
 
-export interface SocialLink {
+interface SocialLink {
   platform: SocialPlatform;
   label: string;
   href: string;

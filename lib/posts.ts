@@ -7,7 +7,7 @@ import { cache } from "react";
  * its public API. Pages revalidate every REVALIDATE_SECONDS, so new or edited
  * posts show up without a redeploy.
  */
-export const REVALIDATE_SECONDS = 60;
+const REVALIDATE_SECONDS = 60;
 
 export interface PostMeta {
   slug: string;
@@ -24,8 +24,25 @@ export interface Post extends PostMeta {
   content: string;
 }
 
-const SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
-const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+function isLowerAlphaNumeric(value: string) {
+  return value.length > 0 && [...value].every((char) =>
+    (char >= "a" && char <= "z") || (char >= "0" && char <= "9")
+  );
+}
+
+function isSlug(value: string) {
+  return value.split("-").every(isLowerAlphaNumeric);
+}
+
+function isDate(value: string) {
+  const [year, month, day] = value.split("-");
+  return (
+    year?.length === 4 &&
+    month?.length === 2 &&
+    day?.length === 2 &&
+    [year, month, day].every((part) => part !== undefined && [...part].every((char) => char >= "0" && char <= "9"))
+  );
+}
 
 function apiUrl(path: string) {
   const base = process.env.BLOG_API_URL?.replace(/\/$/, "");
@@ -44,10 +61,10 @@ function toPostMeta(value: unknown): PostMeta | null {
 
   if (
     typeof slug !== "string" ||
-    !SLUG_RE.test(slug) ||
+    !isSlug(slug) ||
     typeof title !== "string" ||
     typeof date !== "string" ||
-    !DATE_RE.test(date)
+    !isDate(date)
   ) {
     console.warn("[posts] skipping malformed post from API:", slug);
     return null;
@@ -101,7 +118,7 @@ export async function getLatestPosts(count = 3): Promise<PostMeta[]> {
 }
 
 export const getPostBySlug = cache(async (slug: string): Promise<Post | null> => {
-  if (!SLUG_RE.test(slug)) return null;
+  if (!isSlug(slug)) return null;
 
   const data = await fetchJson(`/${slug}`);
   const meta = toPostMeta(data);
