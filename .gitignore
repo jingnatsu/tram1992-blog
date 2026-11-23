@@ -43,3 +43,5 @@ next-env.d.ts
 # IDE
 .idea/workspace.xml
 !.env.example
+!.env.development
+!.env.production
